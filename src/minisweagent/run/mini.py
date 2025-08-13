@@ -20,6 +20,7 @@ from minisweagent.agents.interactive_textual import AgentApp
 from minisweagent.config import builtin_config_dir, get_config_path
 from minisweagent.environments.local import LocalEnvironment
 from minisweagent.models import get_model
+from minisweagent.models.google_model import GoogleModel
 from minisweagent.run.extra.config import configure_if_first_time
 from minisweagent.run.utils.save import save_traj
 
@@ -115,7 +116,8 @@ def main(
         config["agent"]["cost_limit"] = cost_limit
     if exit_immediately:
         config["agent"]["confirm_exit"] = False
-    model = get_model(model_name, config.get("model", {}))
+    # model = get_model(model_name, config.get("model", {}))
+    model = GoogleModel()
     env = LocalEnvironment(**config.get("env", {}))
 
     # Both visual flag and the MSWEA_VISUAL_MODE_DEFAULT flip the mode, so it's essentially a XOR
